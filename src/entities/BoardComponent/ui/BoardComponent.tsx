@@ -1,8 +1,8 @@
 import { classNames } from 'shared/lib/classNames/classNames';
-import React, { memo, Fragment } from 'react';
-import cls from './BoardComponent.module.scss';
-import { Board } from 'shared/lib/Classes/Board';
+import React, { memo } from 'react';
 import { CellComponent } from 'entities/CellComponent';
+import { Board } from 'shared/models/Board';
+import cls from './BoardComponent.module.scss';
 
 interface BoardComponentProps {
     className?: string

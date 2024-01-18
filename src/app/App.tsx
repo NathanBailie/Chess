@@ -1,6 +1,6 @@
 import { BoardComponent } from 'entities/BoardComponent';
 import { useEffect, useState } from 'react';
-import { Board } from 'shared/lib/Classes/Board';
+import { Board } from 'shared/models/Board';
 
 const App = () => {
     const [board, setBoard] = useState(new Board());
@@ -12,6 +12,7 @@ const App = () => {
     function restart() {
         const newBoard = new Board();
         newBoard.initCells();
+        newBoard.addFigures();
         setBoard(newBoard);
     }
     return (
