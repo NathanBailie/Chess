@@ -69,7 +69,6 @@ export class Board {
     }
 
     public addFigures() {
-        // new Queen(Colors.WHITE, this.getCell(3, 3))
         this.addKings();
         this.addQueens();
         this.addRooks();
