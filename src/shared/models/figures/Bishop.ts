@@ -1,6 +1,6 @@
 import { Figure, FigureNames } from './Figure';
 import { Colors } from 'shared/models/Colors';
-import { Cell } from 'shared/models/Cell';
+import { type Cell } from 'shared/models/Cell';
 import blackBishop from 'shared/assets/img/figures/black-bishop.png';
 import whiteBishop from 'shared/assets/img/figures/white-bishop.png';
 
@@ -9,5 +9,13 @@ export class Bishop extends Figure {
         super(color, cell);
         this.logo = color === Colors.BLACK ? blackBishop : whiteBishop;
         this.name = FigureNames.BISHOP;
+    }
+
+    canMove(target: Cell): boolean {
+        if (!super.canMove(target)) {
+            return false;
+        }
+
+        return true;
     }
 }

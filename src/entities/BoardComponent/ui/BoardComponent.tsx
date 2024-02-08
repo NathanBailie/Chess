@@ -1,9 +1,9 @@
 import { classNames } from 'shared/lib/classNames/classNames';
-import React, { memo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { CellComponent } from 'entities/CellComponent';
-import { Board } from 'shared/models/Board';
+import { type Board } from 'shared/models/Board';
 import cls from './BoardComponent.module.scss';
-import { Cell } from 'shared/models/Cell';
+import { type Cell } from 'shared/models/Cell';
 
 interface BoardComponentProps {
     className?: string
@@ -11,14 +11,31 @@ interface BoardComponentProps {
     setBoard: (board: Board) => void
 }
 
-export const BoardComponent = memo((props: BoardComponentProps) => {
+export const BoardComponent = (props: BoardComponentProps) => {
     const { className, board, setBoard } = props;
-    const [selectedCell, setCelectedCell] = useState<Cell | null>(null);
+    const [selectedCell, setSelectedCell] = useState<Cell | null>(null);
+
+    useEffect(() => {
+        highlightCells()
+    }, [selectedCell]);
 
     function click(cell: Cell) {
-        if (cell.figure) {
-            setCelectedCell(cell);
+        if (selectedCell && selectedCell !== cell && selectedCell.figure?.canMove(cell)) {
+            selectedCell.moveFigure(cell);
+            setSelectedCell(null);
+        } else {
+            setSelectedCell(cell);
         }
+    }
+
+    function highlightCells() {
+        board.highlightCells(selectedCell);
+        updateBoard();
+    }
+
+    function updateBoard() {
+        const newBoard = board.getCopyBoard();
+        setBoard(newBoard);
     }
 
     const content = board.cells.map((row, rowId) => {
@@ -44,6 +61,6 @@ export const BoardComponent = memo((props: BoardComponentProps) => {
             {content}
         </div>
     );
-});
+};
 
 BoardComponent.displayName = 'Board';
