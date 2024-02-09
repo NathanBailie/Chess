@@ -4,15 +4,18 @@ import { CellComponent } from 'entities/CellComponent';
 import { type Board } from 'shared/models/Board';
 import cls from './BoardComponent.module.scss';
 import { type Cell } from 'shared/models/Cell';
+import { type Player } from 'shared/models/Player';
 
 interface BoardComponentProps {
     className?: string
     board: Board
     setBoard: (board: Board) => void
+    currentPlayer: Player | null
+    togglePlayer: () => void
 }
 
 export const BoardComponent = (props: BoardComponentProps) => {
-    const { className, board, setBoard } = props;
+    const { className, board, setBoard, currentPlayer, togglePlayer } = props;
     const [selectedCell, setSelectedCell] = useState<Cell | null>(null);
 
     useEffect(() => {
@@ -22,9 +25,12 @@ export const BoardComponent = (props: BoardComponentProps) => {
     function click(cell: Cell) {
         if (selectedCell && selectedCell !== cell && selectedCell.figure?.canMove(cell)) {
             selectedCell.moveFigure(cell);
+            togglePlayer()
             setSelectedCell(null);
         } else {
-            setSelectedCell(cell);
+            if (cell.figure?.color === currentPlayer?.color) {
+                setSelectedCell(cell);
+            }
         }
     }
 
