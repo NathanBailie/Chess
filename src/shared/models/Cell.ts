@@ -62,7 +62,7 @@ export class Cell {
             }
         }
 
-        return false;
+        return true;
     }
 
     isDiagonalEmpty(target: Cell): boolean {
