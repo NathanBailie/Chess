@@ -1,4 +1,5 @@
 import { BoardComponent } from 'entities/BoardComponent';
+import { LostFigures } from 'entities/LostFigures';
 import { useEffect, useState } from 'react';
 import { Board } from 'shared/models/Board';
 import { Colors } from 'shared/models/Colors';
@@ -36,6 +37,16 @@ const App = () => {
                 currentPlayer={currentPlayer}
                 togglePlayer={togglePlayer}
             />
+            <div>
+                <LostFigures
+                    title={'Black figures'}
+                    figures={board.lostBlackFigures}
+                />
+                <LostFigures
+                    title={'White figures'}
+                    figures={board.lostWhiteFigures}
+                />
+            </div>
         </div>
     )
 }
