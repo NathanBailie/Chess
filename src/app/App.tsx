@@ -1,5 +1,6 @@
 import { BoardComponent } from 'entities/BoardComponent';
 import { LostFigures } from 'entities/LostFigures';
+import { Timer } from 'entities/Timer';
 import { useEffect, useState } from 'react';
 import { Board } from 'shared/models/Board';
 import { Colors } from 'shared/models/Colors';
@@ -31,6 +32,10 @@ const App = () => {
 
     return (
         <div className="app">
+            <Timer
+                restart={restart}
+                currentPlayer={currentPlayer}
+            />
             <BoardComponent
                 board={board}
                 setBoard={setBoard}
