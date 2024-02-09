@@ -19,6 +19,6 @@ export class Knight extends Figure {
         const dirX = Math.abs(this.cell.x - target.x);
         const dirY = Math.abs(this.cell.y - target.y);
 
-        return (dirX === 1 && dirY === 2) || (dirX === 2 && dirY === 1)
+        return (dirX === 1 && dirY === 2) || (dirX === 2 && dirY === 1);
     }
 }
