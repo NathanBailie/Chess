@@ -67,7 +67,8 @@ module.exports = {
         "@typescript-eslint/no-floating-promises": "warn",
         "@typescript-eslint/consistent-type-imports": "warn",
         "no-new": "off",
-        "@typescript-eslint/explicit-function-return-type": "off"
+        "@typescript-eslint/explicit-function-return-type": "off",
+        "no-mixed-operators": "off"
     },
     "globals": {
         IS_DEV: true,
